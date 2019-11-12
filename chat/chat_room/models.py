@@ -12,7 +12,7 @@ class Room(models.Model):
 
     class Meta:
         verbose_name = "Chat room"
-        verbose_name_plural = "Cats rooms"
+        verbose_name_plural = "Chat rooms"
 
 
 # Chat model
@@ -23,5 +23,5 @@ class Chat(models.Model):
     date = models.DateTimeField("Post Date", auto_now_add=True)
 
     class Meta:
-        verbose_name = "Chat room"
-        verbose_name_plural = "Cats rooms"
+        verbose_name = "Chat message"
+        verbose_name_plural = "Chat message"
