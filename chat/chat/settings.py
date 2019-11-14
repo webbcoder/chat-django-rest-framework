@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     "rest_framework.authtoken",
     'djoser',
-    'chat_room'
+    'chat_room',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -57,6 +58,40 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:8081',
+]
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8081',
+]
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+# CSRF_COOKIE_NAME = "XCSRF-TOKEN"
+# CSRF_COOKIE_NAME = "csrftoken"
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_EXPOSE_HEADERS = (
+#     'Access-Control-Allow-Origin: *',
+# )
+
 
 ROOT_URLCONF = 'chat.urls'
 
@@ -151,6 +186,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
 }
+
 
 
 try:
