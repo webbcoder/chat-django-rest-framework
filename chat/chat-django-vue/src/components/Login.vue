@@ -38,52 +38,20 @@
                 //     }
                 // })
 
-
-                // axios.post(`http://127.0.0.1:8000/auth/token/login/`, JSON.stringify({
-                //     username: this.login,
-                //     password: this.password
-                // }))
-                // .then(response => console.log(response))
-                // .catch(error => console.log(error));
-
+                let bodyFormData = new FormData();
+                bodyFormData.set('username', this.login);
+                bodyFormData.set('password', this.password);
                 axios({
                     method: 'post',
-                    // mode: 'no-cors',
                     url: 'http://127.0.0.1:8000/auth/token/login/',
-                    data: JSON.stringify({
-                        username: this.login,
-                        password: this.password,
-                        // Authorization: 'Token ca01c725e2352077e3829ab99aef2920b482eb60'
-
-                    }),
-                    // xsrfHeaderName: "X-CSRFToken",
-                    // xsrfCookieName: 'XCSRF-TOKEN',
-                    // headers:{'Content-Type': 'application/json; charset=utf-8'}
-                    config: {
-                        headers: {'Content-Type': 'application/json; charset=utf-8' },
-                    },
-                    headers: {
-                        // 'Access-Control-Allow-Origin': '*',
-                        // 'Access-Control-Allow-Headers': '*',
-                        'Accept': 'application/json',
-                        // 'Content-Type': 'application/json',
-                        'Content-Type' : 'application/x-www-form-urlencoded',
-                        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-                        'Access-Control-Expose-Headers': 'Access-Token, Uid',
-                        'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
-                        // 'Access-Control-Allow-Credentials': 'true',
-                        // 'X-Requested-With': 'XMLHttpRequest',
-                    },
-                    // withCredentials: false,
-                    // credentials: 'same-origin',
+                    data: bodyFormData,
+                    headers: {'Content-Type': 'multipart/form-data' }
                 })
                 .then(response => {
                     console.log(response);
-                    // console.log(csrftoken);
                 })
                 .catch(error => {
                     console.log(error);
-                    // console.log(csrftoken);
                 });
             }
         }
