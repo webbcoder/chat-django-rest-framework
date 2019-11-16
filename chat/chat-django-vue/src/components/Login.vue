@@ -49,7 +49,7 @@
                 })
                 .then(response => {
                     //console.log(response.data.data.attributes.auth_token);
-                    sessionStorage.setItem('auth_token', response.data.data.attributes.auth_token)
+                    sessionStorage.setItem('auth_token', response.data.data.attributes.auth_token);
                     this.$router.push({name: 'home'})
                 })
                 .catch(error => {

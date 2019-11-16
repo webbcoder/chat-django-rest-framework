@@ -2,7 +2,7 @@
     <div>
         <ul>
             <li v-for="room in rooms">
-                <h3>{{room.creator.username}}</h3>
+                <h3 @click="openDialog(room.id)">{{room.creator.username}}</h3>
                 <span>{{room.date}}</span>
             </li>
         </ul>
@@ -15,7 +15,7 @@
         name: "Room",
         data() {
             return {
-                rooms: '',
+                rooms: ''
             }
         },
         created() {
@@ -35,10 +35,15 @@
                     console.log(error);
                 });
             },
+            openDialog(id){
+                this.$emit('openDialog', id)
+            }
         }
     }
 </script>
 
 <style scoped>
-
+    h3{
+        cursor: pointer;
+    }
 </style>
