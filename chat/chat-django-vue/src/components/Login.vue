@@ -11,7 +11,7 @@
     import axios from 'axios';
     import $ from 'jquery'
     export default {
-        name: "Login",
+        name: "login",
         data(){
             return{
                 login: '',
@@ -48,7 +48,9 @@
                     headers: {'Content-Type': 'multipart/form-data' }
                 })
                 .then(response => {
-                    console.log(response);
+                    //console.log(response.data.data.attributes.auth_token);
+                    sessionStorage.setItem('auth_token', response.data.data.attributes.auth_token)
+                    this.$router.push({name: 'home'})
                 })
                 .catch(error => {
                     console.log(error);
