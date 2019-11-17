@@ -1,9 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import permissions
 from rest_framework.permissions import *
-from .models import Room, Chat
-from .serializers import RoomSerializers, ChatSerializer, ChatPostSerializer
+from .models import Room, Chat, User
+from .serializers import RoomSerializers, ChatSerializer, ChatPostSerializer, UserSerializer
 
 # Create your views here.
 
@@ -32,6 +31,24 @@ class Dialog(APIView):
         dialog = ChatPostSerializer(data=request.data)
         if dialog.is_valid():
             dialog.save(user=request.user)
-            return Response({'status': 'Add'})
+            return Response(status=201)
         else:
-            return Response({'status': 'Error'})
+            return Response(status=400)
+
+
+class AddUsersRoom(APIView):
+    def get(self, request):
+        users = User.objects.all()
+        serializer = UserSerializer(users, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        room = request.data.get("room")
+        user = request.data.get("user")
+        try:
+            room = Room.objects.get(id=room)
+            room.invited.add(user)
+            room.save()
+            return Response(status=201)
+        except:
+            return Response(status=400)

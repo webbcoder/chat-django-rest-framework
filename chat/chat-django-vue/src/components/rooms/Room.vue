@@ -1,12 +1,13 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="room in rooms">
-                <h3 @click="openDialog(room.id)">{{room.creator.username}}</h3>
-                <span>{{room.date}}</span>
-            </li>
-        </ul>
-    </div>
+    <mu-paper :z-depth="5">
+    <mu-col span="4" xl="3" lg="4">
+        <div v-for="room in rooms">
+            <h3 @click="openDialog(room.id)">{{room.creator.username}}</h3>
+            <span>{{room.date}}</span>
+        </div>
+
+    </mu-col>
+    </mu-paper>
 </template>
 
 <script>
@@ -31,9 +32,6 @@
                 .then(response => {
                     this.rooms = response.data.data.data
                 })
-                .catch(error => {
-                    console.log(error);
-                });
             },
             openDialog(id){
                 this.$emit('openDialog', id)
