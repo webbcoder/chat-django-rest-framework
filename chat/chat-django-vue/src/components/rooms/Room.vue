@@ -1,13 +1,11 @@
-<template>
-    <mu-paper :z-depth="5">
-    <mu-col span="4" xl="3" lg="4">
+<template v-slot:room>
+    <mu-col span="3" class="rooms-list">
+        <mu-button @click="addRoom">Create room</mu-button>
         <div v-for="room in rooms">
             <h3 @click="openDialog(room.id)">{{room.creator.username}}</h3>
             <span>{{room.date}}</span>
         </div>
-
     </mu-col>
-    </mu-paper>
 </template>
 
 <script>
@@ -34,7 +32,20 @@
                 })
             },
             openDialog(id){
-                this.$emit('openDialog', id)
+                //this.$emit('openDialog', id)
+                this.$router.push({name: 'dialog', params: {id: id}})
+            },
+            addRoom() {
+                const instance = axiosInit();
+                instance({
+                    method: 'post',
+                    url: 'room/',
+                })
+                .then(response => {
+                    //console.log(response);
+                    this.loadRoom();
+                })
+                .catch(error => alert(error.statusText))
             }
         }
     }
@@ -43,5 +54,9 @@
 <style scoped>
     h3{
         cursor: pointer;
+    }
+    .rooms-list {
+        margin: 0 10px 0 0;
+        box-shadow: 1px 4px 5px #848181;
     }
 </style>

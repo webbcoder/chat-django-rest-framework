@@ -1,5 +1,6 @@
 <template>
-    <mu-col span="8" xl="9" lg="8">
+    <mu-col span="8">
+        <AddUsers :room="id"></AddUsers>
         <mu-paper :z-depth="5">
         <mu-container class="">
             <mu-row direction="column" justify-content="start" align-items="end">
@@ -27,10 +28,14 @@
 
 <script>
     import axiosInit from '@/assets/axiaos.config';
+    import AddUsers from "./AddUsers";
     export default {
         name: "dialog",
         props: {
             id: '',
+        },
+        components: {
+            AddUsers,
         },
         data(){
             return{
@@ -51,7 +56,7 @@
                     method: 'get',
                     url: 'dialog/',
                     params: {
-                        room: this.id
+                        room: this.$route.params.id
                     },
 
                 })
@@ -64,7 +69,7 @@
                 const instance = axiosInit();
                 let bodyFormData = new FormData();
                 bodyFormData.set('text', this.form.textarea);
-                bodyFormData.set('room', this.id);
+                bodyFormData.set('room', this.$route.params.id);
                 instance({
                     method: 'post',
                     url: 'dialog/',
