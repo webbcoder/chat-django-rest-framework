@@ -6,7 +6,7 @@
                 {{user.attributes.username}}
             </option>
         </select>
-        <mu-button class="btn-send" round color="success" @click="addUser">Добавить пользователя</mu-button>
+        <mu-button class="btn-send" round color="primary" @click="addUser">Add user</mu-button>
     </div>
 </template>
 
@@ -35,14 +35,15 @@
 
                 })
                 .then(response => {
-                    // console.log(response);
-                    this.list = response.data.data
+                    //console.log(response);
+                    this.list = response.data.data;
                 })
             },
             addUser(){
+                console.log(this.room);
                 const instance = axiosInit();
                 let bodyFormData = new FormData();
-                bodyFormData.set('room', this.room);
+                bodyFormData.set('room', this.$route.params.id);
                 bodyFormData.set('user', parseInt(this.option));
                 instance({
                     method: 'post',

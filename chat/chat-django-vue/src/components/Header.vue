@@ -1,12 +1,20 @@
 <template>
-    <Room v-if="auth"></Room>
+    <div class="header">
+        <mu-appbar style="width: 100%;" color="primary">
+            Chat room
+            <mu-button flat slot="right" v-if="!auth" @click="goLogin">Login</mu-button>
+            <mu-button flat slot="right" v-else @click="logout">Logout</mu-button>
+        </mu-appbar>
+<!--        <mu-row>-->
+<!--            <h1></h1>-->
+<!--        </mu-row>-->
+    </div>
 </template>
 
 <script>
     import Room from './rooms/Room';
     export default {
-        name: "home",
-        components: {Room},
+        name: "header",
         // components: {
         //     Room,
         //     Dialog
@@ -44,5 +52,7 @@
 </script>
 
 <style scoped>
-
+    .header{
+        margin-bottom: 20px;
+    }
 </style>

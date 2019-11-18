@@ -1,33 +1,42 @@
 <template>
-    <mu-col span="8">
-        <AddUsers :room="id"></AddUsers>
-        <mu-paper :z-depth="5">
-        <mu-container class="">
-            <mu-row direction="column" justify-content="start" align-items="end">
-                <div v-for="dialog in dialogs" style="text-align: right">
-                    <p><strong>{{dialog.user.username}}</strong></p>
-                    <p>{{dialog.text}}</p>
-                    <span>{{dialog.date}}</span>
-                </div>
+    <RoomSlot>
+        <mu-col span="9">
+            <mu-row justify-content="end">
+            <div class="add-user">
+                <AddUsers :room="id"></AddUsers>
+            </div>
+        </mu-row>
+<!--            <mu-paper :z-depth="5">-->
+            <mu-container class="">
+                <mu-row direction="column" justify-content="start" align-items="end">
 
-            </mu-row>
-        </mu-container>
-        </mu-paper>
-        <mu-container>
-            <mu-row direction="row" align-items="center">
-                <mu-col span="10">
-                    <mu-text-field v-model="form.textarea" multi-line :rows="4" full-width></mu-text-field>
-                </mu-col>
-                <mu-col span="2">
-                <mu-button round color="success" @click="sendMessage">Send</mu-button>
-                </mu-col>
-            </mu-row>
-        </mu-container>
-    </mu-col>
+                    <div v-for="dialog in dialogs" style="text-align: right">
+                        <mu-chip class="dialog-text">
+                            <p><strong>{{dialog.user.username}}</strong></p>
+                            <p>{{dialog.text}}</p>
+                            <span>{{dialog.date}}</span>
+                        </mu-chip>
+                    </div>
+                </mu-row>
+            </mu-container>
+<!--            </mu-paper>-->
+            <mu-container>
+                <mu-row direction="row" align-items="center">
+                    <mu-col span="10">
+                        <mu-text-field v-model="form.textarea" multi-line :rows="4" full-width></mu-text-field>
+                    </mu-col>
+                    <mu-col span="2">
+                        <mu-button round color="primary" @click="sendMessage">Send</mu-button>
+                    </mu-col>
+                </mu-row>
+            </mu-container>
+        </mu-col>
+    </RoomSlot>
 </template>
 
 <script>
     import axiosInit from '@/assets/axiaos.config';
+    import RoomSlot from './Room'
     import AddUsers from "./AddUsers";
     export default {
         name: "dialog",
@@ -36,6 +45,7 @@
         },
         components: {
             AddUsers,
+            RoomSlot
         },
         data(){
             return{
@@ -51,6 +61,7 @@
         },
         methods: {
             loadDialog(){
+                console.log(this.$route.params.id);
                 const instance = axiosInit();
                 instance({
                     method: 'get',
@@ -91,5 +102,8 @@
 <style scoped>
     .dialog{
         border: 1px solid #000;
+    }
+    .dialog-text{
+        display: block;
     }
 </style>
