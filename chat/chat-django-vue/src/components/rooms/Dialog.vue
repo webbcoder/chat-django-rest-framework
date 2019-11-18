@@ -57,11 +57,10 @@
         },
         created(){
             this.loadDialog();
-            //setInterval(() => this.loadDialog(), 5000) ;
+            setInterval(() => this.loadDialog(), 5000) ;
         },
         methods: {
             loadDialog(){
-                console.log(this.$route.params.id);
                 const instance = axiosInit();
                 instance({
                     method: 'get',

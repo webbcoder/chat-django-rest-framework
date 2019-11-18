@@ -5,9 +5,6 @@
             <mu-button flat slot="right" v-if="!auth" @click="goLogin">Login</mu-button>
             <mu-button flat slot="right" v-else @click="logout">Logout</mu-button>
         </mu-appbar>
-<!--        <mu-row>-->
-<!--            <h1></h1>-->
-<!--        </mu-row>-->
     </div>
 </template>
 
