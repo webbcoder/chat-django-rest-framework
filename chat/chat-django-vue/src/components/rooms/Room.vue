@@ -75,6 +75,8 @@
     .rooms-list {
         /*margin: 0 10px 0 0;*/
         box-shadow: 1px 4px 5px #848181;
+        height: 50vh;
+        overflow-y: auto;
     }
     .add-user{
         margin: 20px 0;

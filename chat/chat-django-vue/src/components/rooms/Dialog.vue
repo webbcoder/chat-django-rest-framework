@@ -1,13 +1,13 @@
 <template>
     <RoomSlot>
-        <mu-col span="9">
+        <mu-col span="9" class="">
             <mu-row justify-content="end">
-            <div class="add-user">
-                <AddUsers :room="id"></AddUsers>
-            </div>
-        </mu-row>
+                <div class="add-user">
+                    <AddUsers :room="id"></AddUsers>
+                </div>
+            </mu-row>
 <!--            <mu-paper :z-depth="5">-->
-            <mu-container class="">
+            <mu-container class="chat-window">
                 <mu-row direction="column" justify-content="start" align-items="end">
 
                     <div v-for="dialog in dialogs" style="text-align: right">
@@ -105,5 +105,9 @@
     }
     .dialog-text{
         display: block;
+    }
+    .chat-window{
+        height: 50vh;
+        overflow-y: auto;
     }
 </style>
