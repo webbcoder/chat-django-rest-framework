@@ -35,8 +35,10 @@
 
                 })
                 .then(response => {
-                    //console.log(response);
                     this.list = response.data.data;
+                })
+                .catch(error => {
+                    console.log(error)
                 })
             },
             addUser(){

@@ -91,7 +91,7 @@
                     console.log(response);
                     this.loadDialog()
                 })
-                .cache(error => {
+                .cathe(error => {
                     alert(error.statusText)
                 })
             }
