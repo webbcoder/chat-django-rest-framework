@@ -29,7 +29,6 @@
                 rooms: ''
             }
         },
-
         components:{
             HomeSlot,
             AddUsers
