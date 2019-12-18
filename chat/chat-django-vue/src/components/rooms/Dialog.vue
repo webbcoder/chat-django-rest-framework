@@ -90,7 +90,7 @@
                     console.log(response);
                     this.loadDialog()
                 })
-                .cathe(error => {
+                .catch(error => {
                     alert(error.statusText)
                 })
             }
